@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ProductivityParty.Views.MainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProductivityParty.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="600" Width="800">
+    <Grid Background="#3576f0" Height="auto" Width="auto">
+        <Grid Background="#FFF" Margin="20,0,20,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="95*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="10*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Task" Grid.Column="0"/>
+                    <TextBlock Text="Status" Grid.Column="1"/>
+                </Grid>
+                <ListView ItemsSource="{Binding WorkItem}" Grid.Row="1">
+                    <ListView.ItemTemplate>
+                        
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding Test}" Grid.Column="0" TextWrapping="Wrap"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
