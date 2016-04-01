@@ -8,13 +8,21 @@ using System.Threading.Tasks;
 
 namespace ProductivityParty.ViewModels
 {
-    class MainViewModel
+    public class MainViewModel
     {
+        #region properties
         private ObservableCollection<WorkItem> mWorkItem = new ObservableCollection<WorkItem>();
         public ObservableCollection<WorkItem> WorkItem
         {
             get { return mWorkItem; }
             set { mWorkItem = value; }
+        }
+        
+        #endregion
+
+        public MainViewModel()
+        {
+            
         }
     }
 }

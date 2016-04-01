@@ -30,11 +30,13 @@ namespace ProductivityParty.Views
             {
                 new Model.WorkItem()
                 {
-                    Test = "mamamia"
+                    Task = "mamamia",
+                    Notes = "Hehe haha"
                 },
                 new Model.WorkItem()
                 {
-                    Test = "Wawawewa"
+                    Task = "Wawawewa",
+                    Notes = "Hehe haha"
                 }
             };
             DataContext = _viewModel;

@@ -18,7 +18,7 @@
     
     <Controls:MetroWindow.LeftWindowCommands>
         <Controls:WindowCommands>
-            <Button>
+            <Button Click="Button_Click_1">
                 <Rectangle 
                     Width="20"
                     Height="20"

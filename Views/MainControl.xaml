@@ -4,11 +4,63 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ProductivityParty.Views"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d"
              d:DesignHeight="600" Width="800">
+
+    <Control.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Control.Resources>
+
     <Grid Background="#3576f0" Height="auto" Width="auto">
         <Grid Background="#FFF" Margin="20,0,20,20">
-            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="90*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#3576f0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="90*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0" Background="#3576f0">
+                    <Controls:WindowCommands>
+                        <Button>
+                            <Rectangle Width="20"
+                             Height="20"
+                             Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_chevron_left}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Button>
+                    </Controls:WindowCommands>
+                </Grid>
+
+                <Grid Grid.Column="1" Background="#3576f0">
+                    <Controls:WindowCommands>
+                        <Button>
+                            <Rectangle Width="20"
+                             Height="20"
+                             Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_chevron_right}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Button>
+                    </Controls:WindowCommands>
+                </Grid>
+            </Grid>
+            
+            
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="95*"/>
@@ -16,21 +68,25 @@
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Task" Grid.Column="0"/>
                     <TextBlock Text="Status" Grid.Column="1"/>
+                    <TextBlock Text="Notes" Grid.Column="2"/>
                 </Grid>
                 <ListView ItemsSource="{Binding WorkItem}" Grid.Row="1">
                     <ListView.ItemTemplate>
-                        
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10*"/>
+                                    <ColumnDefinition Width="5*"/>
                                     <ColumnDefinition Width="10*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBox Text="{Binding Test}" Grid.Column="0" TextWrapping="Wrap"/>
+                                <TextBox Text="{Binding Task}" Grid.Column="0" TextWrapping="Wrap"/>
+                                <ComboBox ItemsSource="{Binding AvailableStatus}" DisplayMemberPath="display" Grid.Column="1"/>
+                                <TextBox Text="{Binding Notes}" Grid.Column="2" TextWrapping="Wrap"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
