@@ -36,6 +36,10 @@ namespace ProductivityParty.Model
             {
                 new StatusBoxItem()
                 {
+                    display="Not Started"
+                },
+                new StatusBoxItem()
+                {
                    display = "Complete"
                 },
                 new StatusBoxItem()

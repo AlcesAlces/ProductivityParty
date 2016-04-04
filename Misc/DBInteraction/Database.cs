@@ -118,5 +118,14 @@ namespace ProductivityParty.Misc.DBInteraction
             }
         }
 
+        public void RemoveWorkItem(WorkItem toRemove)
+        {
+            using (var db = new LiteDatabase(Global.dbLoc))
+            {
+                var cur = db.GetCollection<WorkItem>(Global.WorkItemsContainerTable);
+
+                cur.Delete(toRemove.Id);
+            }
+        }
     }
 }

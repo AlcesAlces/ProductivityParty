@@ -115,13 +115,28 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
                                     <ColumnDefinition Width="10*"/>
                                     <ColumnDefinition Width="5*"/>
                                     <ColumnDefinition Width="10*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBox Text="{Binding Task}" Grid.Column="0" TextWrapping="Wrap"/>
-                                <ComboBox ItemsSource="{Binding AvailableStatus}" DisplayMemberPath="display" Grid.Column="1"/>
-                                <TextBox Text="{Binding Notes}" Grid.Column="2" TextWrapping="Wrap"/>
+                                <Button Click="RemoveWorkitem" Tag="{Binding WorkItem}">
+                                    <Rectangle Width="10"
+                                 Height="10"
+                                 Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_3d_x}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                                </Button>
+                                <!--Little trick to get this thing to wrap text without a definite binding size -->
+                                <Grid Grid.Column="1"  Name="TaskGrid">
+                                    <TextBox Text="{Binding Task}" MaxWidth="{Binding ElementName=TaskGrid, Path=ActualWidth}"  VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
+                                </Grid>
+                                <ComboBox SelectedIndex="{Binding selectedItem}" ItemsSource="{Binding AvailableStatus}" DisplayMemberPath="display" Grid.Column="2"/>
+                                <Grid Name="TaskGrid2" Grid.Column="3">
+                                    <TextBox Text="{Binding Notes}" MaxWidth="{Binding ElementName=TaskGrid2, Path=ActualWidth}"  VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"/>
+                                </Grid>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -32,9 +32,17 @@ namespace ProductivityParty.Views
             DataContext = _viewModel;
         }
 
+        /// <summary>
+        /// Adds a new item to the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.WorkItem.Add(new Model.WorkItem(Global.date));
+            WorkItem toAdd = new Model.WorkItem(Global.date);
+            _viewModel.WorkItem.Add(toAdd);
+            Database db = new Database();
+            db.SaveWorkItem(toAdd);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -74,6 +82,14 @@ namespace ProductivityParty.Views
             {
                 _viewModel.WorkItem.Add(item);
             }
+        }
+
+        private void RemoveWorkitem(object sender, RoutedEventArgs e)
+        {
+            WorkItem item = (sender as Button).DataContext as WorkItem;
+            _viewModel.WorkItem.Remove(item);
+            Database db = new Database();
+            db.RemoveWorkItem(item);
         }
     }
 }
